@@ -37,19 +37,19 @@ Let's try to understand the problem if we don't use a try-catch block.
 
 ### Example 1
 ```java
-public class TryCatchExample1 {  
-  
-    public static void main(String[] args) {  
-          
-        int data=50/0; //may throw exception   
-          
-        System.out.println("rest of the code");  
-          
-    }  
-      
-}  
+public class Example1 {
+    public static void main(String[] args) {
+        int data=50/0;
+        System.out.println("last Line");
+    }
+}
 ```
-As displayed in the above example, the rest of the code is not executed (in such case, the rest of the code statement is not printed).
+As nothing can be divided by zero so it will gave a exception and it will break the code so it will not print "The last line"
+
+this is a ArithmeticException and  Hierarchy of ArithmeticException are below below:
+
+`Throwable → Exception → RuntimeException → ArithmeticException`
+
 
 Output:
 
@@ -64,29 +64,28 @@ Let's see the solution of the above problem by a java try-catch block.
 ### Example 2
 ```java
 
-public class TryCatchExample2 {
-
-    public static void main(String[] args) {  
-        try  
-        {  
-        int data=50/0; //may throw exception   
-        }  
-            //handling the exception  
-        catch(ArithmeticException e)  
-        {  
-            System.out.println(e);  
-        }  
-        System.out.println("rest of the code");  
-    }  
-
-}  
+public class Example2 {
+    public static void main(String[] args) {
+        System.out.println("First Line");
+        try {
+            int data= 50/0;
+            System.out.println("I am in Try block");
+        }catch (ArithmeticException e){
+            System.out.println("I am in Catch Block ");
+            System.out.println(e);
+        }
+        System.out.println("The last line");
+    }
+} 
 ```
 Output:
 ```output
-java.lang.ArithmeticException: / by zero //as we print `e`
-rest of the code
+First Line
+I am in Catch Block
+java.lang.ArithmeticException: / by zero
+The last line
 ```
-As displayed in the above example, the rest of the code is executed, i.e., the rest of the code statement is printed.
+Here, By adding try catch block now i was able to handle the error and print "The last line" .
 
 ### Example 3
 In this example, we also kept the code in a try block that will not throw an exception.
@@ -118,29 +117,51 @@ Here, we can see that if an exception occurs in the try block, the rest of the b
 
 ###  Example 4
 Here, we handle the exception using the parent class exception.
+we again do the same code again and in here we will call our exception different way
+as our Exception for (50/0) is ArithmeticException so its Hierarchy
+
+`Throwable → Exception → RuntimeException → ArithmeticException`
 ```java
-public class TryCatchExample4 {  
-  
-    public static void main(String[] args) {  
-        try  
-        {  
-        int data=50/0; //may throw exception   
-        }  
-            // handling the exception by using Exception class      
-        catch(Exception e)  
-        {  
-            System.out.println(e);  
-        }  
-        System.out.println("rest of the code");  
-    }  
-      
-} 
+public class Example3 {
+    
+    public static void main(String[] args) {
+        try{
+            int data1= 10/0;
+        }catch (Throwable e){
+            System.out.println("Throwable: " +e.getMessage());
+            //e show the exception and message
+            //e.getmessage() only provide the message
+        }
+        try{
+            int data2= 10/0;
+        }catch (Exception e){
+            System.out.println("Exception: " +e.getMessage());
+        }
+        try{
+            int data3= 10/0;
+        }catch (RuntimeException e){
+            System.out.println("RuntimeException: " +e.getMessage());
+        }
+        try{
+            int data4= 10/0;
+        }catch (ArithmeticException e){
+            System.out.println("ArithmeticException: " +e.getMessage());
+        }
+        System.out.println("The last line");
+
+    }
+}
 ```
 Output:
 ```output
-java.lang.ArithmeticException: / by zero
-rest of the code
+Throwable: / by zero
+Exception: / by zero
+RuntimeException: / by zero
+ArithmeticException: / by zero
+The last line
 ```
+Here we can understand we can call exception by its parent class it will work same.
+
 ### Example 5
 Let's see an example to print a custom message on exception.
 ```java
