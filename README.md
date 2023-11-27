@@ -62,27 +62,27 @@ In the above example, 100/0 raises an ArithmeticException which is handled by a 
 ## Common Scenarios of Java Exceptions
 There are given some scenarios where unchecked exceptions may occur. They are as follows:
 
-1. A scenario where ArithmeticException occurs:
+1. **A scenario where ArithmeticException occurs:**
 
    If we divide any number by zero, there occurs an ArithmeticException.
 ```java
 int a=50/0;//ArithmeticException   
 ```
-2. A scenario where NullPointerException occurs:
+2. **A scenario where NullPointerException occurs:**
 
    If we have a null value in any variable, performing any operation on the variable throws a NullPointerException.
 ```java
 String s=null;
 System.out.println(s.length());//NullPointerException   
 ```
-3. A scenario where NumberFormatException occurs:
+3. **A scenario where NumberFormatException occurs:**
 
    If the formatting of any variable or number is mismatched, it may result into NumberFormatException. Suppose we have a string variable that has characters; converting this variable into digit will cause NumberFormatException.
 ```java
 String s="abc";
 int i=Integer.parseInt(s);//NumberFormatException  
 ```
-4.  A scenario where ArrayIndexOutOfBoundsException occurs:
+4.  **A scenario where ArrayIndexOutOfBoundsException occurs:**
 
     When an array exceeds to it's size, the ArrayIndexOutOfBoundsException occurs. there may be other reasons to occur ArrayIndexOutOfBoundsException. Consider the following statements.
 ```java
